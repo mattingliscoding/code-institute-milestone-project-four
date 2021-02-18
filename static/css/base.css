@@ -9,6 +9,7 @@ body {
     color: #555;
     font-family: 'Lato';
 }
+
 /* font classes */
 
 .lato {
@@ -70,9 +71,8 @@ body {
     background: #000 !important;
 }
 
-/* -------------------------------- Media Queries */
-
 /* Slightly larger container on xl screens */
+
 @media (min-width: 1200px) {
   .container {
     max-width: 80%;
