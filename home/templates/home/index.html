@@ -10,18 +10,55 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col-7 col-md-6 my-auto">
-                <h1 class="display-4 logo-font text-black">
-                    New 2021 Guitars Are Here!
-                </h1>
-                <div class="my-5">
-                    <h4>
+    
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="/media/banners/guitar-banner.jpg" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1 class="display-4 logo-font">
+                        New 2021 Guitars Are Here!
+                    </h1>
+                    <h4 class="my-5">
+                        <a href="" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="/media/banners/studio-gear-banner.jpg" alt="Second slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1 class="display-4 logo-font">
+                        15% Off Studio Monitors for a limited time!
+                    </h1>
+                    <h4 class="my-5">
+                        <a href="" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
+                    </h4>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="/media/banners/drums-banner.jpg" alt="Third slide">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1 class="display-4 logo-font">
+                        All New DW Drum products in stock
+                    </h1>
+                    <h4 class="my-5">
                         <a href="" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
                     </h4>
                 </div>
             </div>
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 {% endblock %}
