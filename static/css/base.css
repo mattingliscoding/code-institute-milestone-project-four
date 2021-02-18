@@ -3,8 +3,7 @@ html {
 }
 
 body {
-    /* background: url('/media/large-images/index-guitar-banner.jpg') no-repeat center center fixed;
-    background-size: cover; */
+    background-color: #000;
     height: calc(100vh - 164px);
     color: #555;
     font-family: 'Lato';
