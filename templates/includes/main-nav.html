@@ -17,11 +17,11 @@
                 Guitars
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
-                <a href="" class="dropdown-item">Electric Guitars</a>
-                <a href="" class="dropdown-item">Acoustic Guitars</a>
-                <a href="" class="dropdown-item">Bass Guitars</a>
-                <a href="" class="dropdown-item">Guitar Equipment</a>
-                <a href="" class="dropdown-item">All Guitar Products</a>
+                <a href="{% url 'products' %}?category=electric_guitar" class="dropdown-item">Electric Guitars</a>
+                <a href="{% url 'products' %}?category=acoustic_guitar" class="dropdown-item">Acoustic Guitars</a>
+                <a href="{% url 'products' %}?category=bass_guitar" class="dropdown-item">Bass Guitars</a>
+                <a href="{% url 'products' %}?category=guitar_equipment" class="dropdown-item">Guitar Equipment</a>
+                <a href="{% url 'products' %}?category=electric_guitar,acoustic_guitar,bass_guitar,guitar_equipment" class="dropdown-item">All Guitar Products</a>
             </div>
         </li>
 
@@ -30,10 +30,10 @@
                 Drums
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="homeware-link">
-                <a href="" class="dropdown-item">Full Kits</a>
-                <a href="" class="dropdown-item">Individual Drums</a>
-                <a href="" class="dropdown-item">Drum Equipment</a>
-                <a href="" class="dropdown-item">All Drum Products</a>
+                <a href="{% url 'products' %}?category=full_kits" class="dropdown-item">Full Kits</a>
+                <a href="{% url 'products' %}?category=individual_drums" class="dropdown-item">Individual Drums</a>
+                <a href="{% url 'products' %}?category=drum_equipment" class="dropdown-item">Drum Equipment</a>
+                <a href="{% url 'products' %}?category=full_kits,individual_drums,drum_equipment" class="dropdown-item">All Drum Products</a>
             </div>
         </li>
 
@@ -42,10 +42,10 @@
                 Studio
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="homeware-link">
-                <a href="" class="dropdown-item">Monitors</a>
-                <a href="" class="dropdown-item">Hardware</a>
-                <a href="" class="dropdown-item">Software</a>
-                <a href="" class="dropdown-item">All Studio Products</a>
+                <a href="{% url 'products' %}?category=monitors" class="dropdown-item">Monitors</a>
+                <a href="{% url 'products' %}?category=hardware" class="dropdown-item">Hardware</a>
+                <a href="{% url 'products' %}?category=software" class="dropdown-item">Software</a>
+                <a href="{% url 'products' %}?category=monitors,hardware,software" class="dropdown-item">All Studio Products</a>
             </div>
         </li>
 
@@ -54,10 +54,10 @@
                 Special Offers
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-                <a href="" class="dropdown-item">New Arrivals</a>
-                <a href="" class="dropdown-item">Deals</a>
-                <a href="" class="dropdown-item">Clearance</a>
-                <a href="" class="dropdown-item">All Specials</a>
+                <a href="{% url 'products' %}?category=new_arrivals" class="dropdown-item">New Arrivals</a>
+                <a href="{% url 'products' %}?category=deals" class="dropdown-item">Deals</a>
+                <a href="{% url 'products' %}?category=clearance" class="dropdown-item">Clearance</a>
+                <a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="dropdown-item">All Specials</a>
             </div>
         </li>
     </ul>
