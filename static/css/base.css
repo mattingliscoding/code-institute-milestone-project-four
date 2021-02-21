@@ -95,10 +95,6 @@ a.category-badge > span.badge:hover {
     cursor: pointer;
 }
 
-
-
-
-
 /* Slightly larger container on xl screens */
 
 @media (min-width: 1200px) {
