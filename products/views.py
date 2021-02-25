@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 
-from .models import Product, Category
+from .models import Product, Category, Review
 from .forms import ProductForm
 
 
@@ -172,3 +172,14 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+
+
+def review_list(request):
+    latest_review_list = Review.objects.order_by('-pub_date')[:9]
+    context = {'latest_review_list': latest_review_list}
+    return render(request, 'reviews/review_list.html', context)
+
+
+def review_detail(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    return render(request, 'reviews/review_detail.html', {'review': review})
