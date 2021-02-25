@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/product_details.css' %}">
+{% endblock %}
+
+
+
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -10,15 +17,16 @@
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-                <div class="image-container my-5">
+                <div id="img-container" class="image-container my-5">
                     {% if product.image %}
-                        <a href="{{ product.image.url }}" target="_blank">
-                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                        </a>
+                        <div>
+                            <a href="{{ product.image.url }}" target="_blank">
+                                <img id="featured" class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </a>
+                        </div>
                         {% else %}
                         <a href="">
                             <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
@@ -144,5 +152,5 @@
 
 {% block postloadjs %}
 {{ block.super }}
-{% include 'products/includes/quantity_input_script.html' %}
+{% include 'products/includes/product_scripts.html' %}
 {% endblock %}
