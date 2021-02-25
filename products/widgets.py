@@ -1,4 +1,4 @@
-from django.forms.widgets import ClearableFileInput
+from django.forms.widgets import ClearableFileInput, Textarea
 from django.utils.translation import gettext_lazy as _
 
 

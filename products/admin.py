@@ -26,7 +26,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class ReviewAdmin(admin.ModelAdmin):
     model = Review
-    list_display = ('name', 'rating', 'user_name', 'comment', 'pub_date')
+    list_display = ('name', 'title', 'user_name', 'comment', 'pub_date')
     list_filter = ['pub_date', 'user_name']
     search_fields = ['comment']
 
