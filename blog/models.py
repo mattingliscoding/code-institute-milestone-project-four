@@ -9,10 +9,11 @@ class BlogPost(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name='blog_posts')
     category = models.CharField(max_length=254)
-    updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True,
-                                      verbose_name='post_created_date')
+    created_on = models.DateTimeField('blog_posted_date')
+    image_url = models.URLField(
+                                max_length=1024, null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
 
     class Meta:
         ordering = ['-created_on']
@@ -24,3 +25,23 @@ class BlogPost(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(BlogPost, self).save(*args, **kwargs)
+
+
+class BlogComment(models.Model):
+    article_id = models.ForeignKey('BlogPost', null=True,
+                                   related_name="comments", blank=True,
+                                   on_delete=models.SET_NULL)
+    user_id = models.ForeignKey(User, null=True,
+                                blank=True, on_delete=models.SET_NULL)
+    comment_title = models.CharField(max_length=50)
+    comment = models.TextField(max_length=500)
+    created_on = models.DateTimeField(auto_now_add=True,
+                                      verbose_name='comment_posted_date')
+
+    class Meta:
+        ordering = ['-created_on']
+
+    def __str__(self):
+        return '{}, {}, {}'.format(self.article_id,
+                                   self.user_id,
+                                   self.comment_title)
