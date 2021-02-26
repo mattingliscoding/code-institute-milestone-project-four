@@ -1,12 +1,16 @@
 from django.contrib import admin
-from .models import BlogPost, BlogComment
+from .models import BlogPost, BlogComment, BlogImage
 
 
 class BlogPostAdmin(admin.ModelAdmin):
     list_display = (
-        'title', 'slug', 'category', 'created_on', 'image')
+        'title', 'slug', 'category', 'created_on')
     search_fields = ['title', 'content']
     prepopulated_fields = {'slug': ('title',)}
+
+
+class PostImageAdmin(admin.ModelAdmin):
+    list_display = ('image', 'article_id')
 
 
 class BlogCommentAdmin(admin.ModelAdmin):
@@ -16,4 +20,5 @@ class BlogCommentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(BlogPost, BlogPostAdmin)
+admin.site.register(BlogImage, PostImageAdmin)
 admin.site.register(BlogComment, BlogCommentAdmin)

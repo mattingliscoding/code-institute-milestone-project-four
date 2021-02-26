@@ -11,9 +11,6 @@ class BlogPost(models.Model):
     category = models.CharField(max_length=254)
     content = models.TextField()
     created_on = models.DateTimeField('blog_posted_date')
-    image_url = models.URLField(
-                                max_length=1024, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
 
     class Meta:
         ordering = ['-created_on']
@@ -25,6 +22,17 @@ class BlogPost(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(BlogPost, self).save(*args, **kwargs)
+
+
+class BlogImage(models.Model):
+    image = models.ImageField(null=False)
+    article_id = models.ForeignKey('BlogPost', null=True,
+                                   blank=True, on_delete=models.SET_NULL,
+                                   verbose_name='image_article_id')
+
+    def __str__(self):
+        return '{}, {}'.format(self.image,
+                               self.article_id)
 
 
 class BlogComment(models.Model):
