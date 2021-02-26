@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     # Other
 
     'crispy_forms',
-    'numpy',
 ]
 
 MIDDLEWARE = [
