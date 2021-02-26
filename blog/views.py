@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 
 from .models import BlogPost, BlogImage, BlogComment
@@ -22,17 +21,6 @@ def blog_feed(request):
             category_dict[key.category] += 1
         else:
             category_dict[key.category] = 1
-
-    # Pagination
-    paginator = Paginator(blog_post, 5)
-    page = request.GET.get('page')
-
-    try:
-        blog_post = paginator.page(page)
-    except PageNotAnInteger:
-        blog_post = paginator.page(1)
-    except EmptyPage:
-        blog_post = paginator.page(paginator.num_pages)
 
     context = {
         'blog_post': blog_post,
