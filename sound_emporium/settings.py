@@ -134,12 +134,12 @@ if 'DATABASE_URL' in os.environ:
     print('Using Postgres')
 else:
     print('Postgres url not found, using sqlite instead')
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 
 
 # Password validation
