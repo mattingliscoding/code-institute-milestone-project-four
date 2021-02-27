@@ -44,10 +44,10 @@
   </head>
   <body>
     <header class="container-fluid">
-        <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
+        <div id="topnav" class="row pt-lg-2 d-none d-lg-flex">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="brand-font text-black my-0"><strong>Sound</strong> Emporium</h2>
+                    <h2 class="brand-font nav-text my-0"><strong>Sound</strong> Emporium</h2>
                 </a>
             </div>
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
@@ -56,7 +56,7 @@
                         <input class="form-control border border-black rounded-0" type="text" name="q"
                             placeholder="Search Sound Emporium">
                         <div class="input-group-append">
-                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                            <button class="form-control btn border border-black rounded-0" type="submit">
                                 <span class="icon">
                                     <i class="fas fa-search"></i>
                                 </span>
@@ -68,11 +68,11 @@
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 raleway">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
                     <li class="list-inline-item dropdown">
-                        <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true"
+                        <a class="nav-text nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             <div class="text-center">
                                 <div><i class="fas fa-user fa-lg"></i></div>
-                                <p class="my-0">My Account</p>
+                                <p class="nav-text my-0">My Account</p>
                             </div>
                         </a>
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
@@ -89,9 +89,9 @@
                         </div>
                     </li>
                     <li class="list-inline-item">
-                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
+                        <a class="{% if grand_total %}text-info font-weight-bold{% else %}{% endif %} nav-link"
                             href="{% url 'view_basket' %}">
-                            <div class="text-center">
+                            <div class="nav-text text-center">
                                 <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                                 <p class="my-0">
                                     {% if grand_total %}
@@ -106,7 +106,7 @@
                 </ul>
             </div>
         </div>
-        <div class="row bg-white">
+        <div class="row">
             <nav class="mobile-header navbar navbar-expand-lg navbar-light w-100">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
                     aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -144,7 +144,7 @@
 
     <section>
         <nav class="footer navbar">
-            <a class="col-sm-4 footer-brand hind-title hvr-shrink" href="#">Back to Top</a>
+            <a class="col-sm-4 footer-brand hind-title hvr-shrink" href="#"></a>
             <div class="col-sm-4">
                 <ul class="list-inline social-links">
                     <li class="list-inline-item hvr-shrink">
@@ -171,16 +171,26 @@
                             <span class="sr-only">YouTube</span>
                         </a>
                     </li>
+                    <li class="list-inline-item hvr-shrink">
+                        <a class="btt-link d-flex h-100">
+                            <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
+
 
     </section>
 
     {% block postloadjs %}
         <script type="text/javascript">
         $('.toast').toast('show');
-        </script>
+
+        $('.btt-link').click(function(e) {
+			window.scrollTo(0,0)
+		})		
+	</script>
     {% endblock %}
 
     

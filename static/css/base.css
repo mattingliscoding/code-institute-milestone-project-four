@@ -4,13 +4,18 @@ html {
 
 body {
     height: calc(100vh - 164px);
-    color: #000;
     font-family: 'Lato';
 }
-/* 
+#topnav{
+    background-color: #102027;
+}
 .mobile-header{
-    background-color: #c2c2c2;
-} */
+    background-color: #37474f;
+}
+
+.nav-text{
+    color: #ffffff !important;
+}
 
 /* font classes */
 
@@ -274,6 +279,11 @@ input[name='q']::placeholder {
 }
 
 /* Index */
+
+.search-button{
+    color: #37474f;
+}
+
 
 .carousel-wrapper{
     min-height: 50%;
