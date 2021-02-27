@@ -128,10 +128,10 @@ WSGI_APPLICATION = 'sound_emporium.wsgi.application'
 
 
 if 'DATABASE_URL' in os.environ:
+    print('Using Postgres')
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-    print('Using Postgres')
 else:
     print('Postgres url not found, using sqlite instead')
     DATABASES = {
