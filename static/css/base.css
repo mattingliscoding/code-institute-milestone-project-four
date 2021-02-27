@@ -280,6 +280,10 @@ input[name='q']::placeholder {
 
 /* Index */
 
+.index-container{
+    background-image: url(https://i.imgur.com/FqUr6R8.jpg);
+}
+
 .search-button{
     color: #37474f;
 }
