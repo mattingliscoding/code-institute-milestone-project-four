@@ -131,7 +131,9 @@ if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
+    print('Using Postgres')
 else:
+    print('Postgres url not found, using sqlite instead')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -184,6 +186,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 if 'USE_AWS' in os.environ:
+
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+
     # bucket config
     AWS_STORAGE_BUCKET_NAME = 'ms4-sound-emporium'
     AWS_S3_REGION_NAME = 'eu-west-2'
