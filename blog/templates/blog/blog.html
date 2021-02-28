@@ -35,28 +35,28 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12 mt-3">
-                                <div class="card">
-                                    {% for post in blog_post %}
-                                    <div class="card-horizontal">
-                                        {% for card_image in blog_image|in_image:post.pk %}
-                                        <div class="img-square-wrapper d-none d-sm-block">
-                                            <a href="{% url 'post_view' post.slug %}">
-                                            <img class="card-img-top blog-card-images" src="{{ card_image.image.url }}" alt="{{ post.title }}">
-                                            </a>
+                                {% for post in blog_post %}
+                                    <div class="card mb-3 shadow">
+                                        
+                                        <div class="card-horizontal">
+                                            {% for card_image in blog_image|in_image:post.pk %}
+                                            <div class="img-square-wrapper d-none d-sm-block">
+                                                <a href="{% url 'post_view' post.slug %}">
+                                                <img class="card-img-top blog-card-images" src="{{ card_image.image.url }}" alt="{{ post.title }}">
+                                                </a>
+                                            </div>
+                                            {% endfor %}
+                                            <div class="card-body">
+                                                <h1 class="card-title-extenstion logo-font">{{ post.title }}</h1>
+                                                <a href="{% url 'post_view' post.slug %}" class="btn btn-black rounded-0 text-uppercase">Read More</a>
+                                            </div>
                                         </div>
-                                        {% endfor %}
-                                        <div class="card-body">
-                                            <h4 class="card-title card-title-extenstion">{{ post.title }}</h4>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                                                the card's content.</p>
-                                            <a href="{% url 'post_view' post.slug %}" class="btn btn-primary">Read More</a>
+                                        <div class="card-footer">
+                                            <small class="text-muted">Posted on {{ post.updated_on }} by Sound Emporium</small>
                                         </div>
+                                        
                                     </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">Last updated 3 mins ago</small>
-                                    </div>
-                                    {% endfor %}
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>

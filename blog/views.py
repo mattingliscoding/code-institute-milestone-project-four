@@ -24,35 +24,6 @@ def blog_feed(request):
     return render(request, 'blog/blog.html', context)
 
 
-def category_view(request, category):
-    """
-    A view to display blog posts
-    with a selected category
-    """
-    blog_post = BlogPost.objects.all().order_by('-created_on')
-    selected_blog = blog_post.filter(category__icontains=category)
-    total_post_number = blog_post.count()
-    blog_image = BlogImage.objects.all()
-    blog_post = BlogPost.objects.all()
-
-    category_dict = dict()
-    for key in blog_post:
-        if key.category in category_dict.keys():
-            category_dict[key.category] += 1
-        else:
-            category_dict[key.category] = 1
-
-    context = {
-        'selected_blog': selected_blog,
-        'blog_image': blog_image,
-        'category_dict': category_dict,
-        'category': category,
-        'total_post_number': total_post_number,
-    }
-
-    return render(request, 'blog/post_category_view.html', context)
-
-
 def post_view(request, slug):
     """
     A view to render the article and
