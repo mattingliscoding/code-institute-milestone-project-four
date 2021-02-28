@@ -27,6 +27,11 @@ body {
     border: none;
 }
 
+.btn-main{
+    background: #F25244;
+    color: black;
+}
+
 /* font classes */
 
 .lato {
@@ -73,7 +78,7 @@ body {
 }
 
 .btn-black {
-    background: black;
+    background: #3F5259;
     color: white;
 }
 .btn-outline-black:hover,
