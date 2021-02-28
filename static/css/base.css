@@ -17,7 +17,15 @@ body {
 }
 
 .nav-text{
-    color: #ffffff !important;
+    color: #ffffff;
+}
+.nav-icon{
+    color: #F25244;
+}
+
+.nav-icon:hover,
+.nav-icon:focus{
+    color: #37474f;
 }
 
 .search-bar{
