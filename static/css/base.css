@@ -81,6 +81,13 @@ body {
     color: #3F5259;
 }
 
+.sub-brand-font{
+    color: #F25244;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+
 .main-logo-link {
     width: fit-content;
 }
@@ -413,11 +420,17 @@ input[name='q']::placeholder {
 
 /* Index */
 
-.index-card{
+.index-container{
+    /* background: #37474f; */
     background-image: url(https://i.imgur.com/FqUr6R8.jpg);
 }
 
-.search-icon{
+.index-card{
+    background: #102027;
+}
+
+.search-icon,
+.index-links a{
     color: #F25244;
 }
 
