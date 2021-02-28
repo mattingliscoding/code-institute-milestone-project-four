@@ -30,6 +30,11 @@ body {
     color: #3F5259;
 }
 
+.nav-link:hover,
+.nav-link:focus{
+    color: #F25244;
+}
+
 .search-bar{
     background-color: transparent;
 }
