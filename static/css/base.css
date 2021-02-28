@@ -30,10 +30,19 @@ body {
     color: #3F5259;
 }
 
+.mobile-bag a{
+    color: #fff !important;
+}
+
+
 .nav-link:hover,
-.nav-link:focus{
+.nav-link:focus,
+.mobile-bag:hover,
+.mobile-bag:focus,
+.mobile-bag:active{
     color: #F25244;
 }
+
 
 .search-bar{
     background-color: transparent;
