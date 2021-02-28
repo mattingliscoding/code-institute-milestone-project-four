@@ -10,7 +10,8 @@ body {
     background-color: #102027;
 }
 .mobile-header,
-.users-comment{
+.users-comment,
+.review-card{
     background-color: #37474f;
 }
 
@@ -361,16 +362,19 @@ input[name='q']::placeholder {
     height: 350px;
 }
 
-
-
 .breadcrumb{
     background-color: transparent;
 }
 
 .breadcrumb a,
 .blog-comment,
-.product_delete{
+.product_delete,
+.review-delete{
     color: #F25244;
+}
+.review-delete:hover,
+.review-delete:focus{
+    color: white;
 }
 
 .card-horizontal {
