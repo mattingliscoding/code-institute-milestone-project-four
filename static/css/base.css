@@ -9,13 +9,17 @@ body {
 #topnav{
     background-color: #102027;
 }
-.mobile-header{
+.mobile-header,
+.users-comment{
     background-color: #37474f;
 }
 
-.nav-text,
-.search-icon{
+.nav-text{
     color: #ffffff !important;
+}
+
+.search-bar{
+    background-color: transparent;
 }
 
 .form-control:focus{
@@ -52,8 +56,10 @@ body {
 }
 
 .brand-font{
+    color: #F25244;
     text-transform: uppercase;
     white-space: nowrap;
+    text-shadow: 2px 2px 4px #000000;
 }
 
 .main-logo-link {
@@ -290,8 +296,12 @@ input[name='q']::placeholder {
     background-image: url(https://i.imgur.com/FqUr6R8.jpg);
 }
 
-.search-button{
-    color: #37474f;
+.search-icon{
+    color: #F25244;
+}
+
+.search-icon:focus{
+    color: #fff;
 }
 
 
@@ -328,6 +338,24 @@ input[name='q']::placeholder {
 }
 
 /* BLOG */
+
+.blog_post_img {
+    object-fit: cover;
+    width: 100%;
+    height: 350px;
+}
+
+
+
+.breadcrumb{
+    background-color: transparent;
+}
+
+.breadcrumb a,
+.blog-comment,
+.product_delete{
+    color: #F25244;
+}
 
 .card-horizontal {
     display: flex;

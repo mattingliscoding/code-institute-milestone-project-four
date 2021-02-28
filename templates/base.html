@@ -47,13 +47,13 @@
         <div id="topnav" class="row pt-lg-2 d-none d-lg-flex">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
-                    <h2 class="brand-font nav-text my-0"><strong>Sound</strong> Emporium</h2>
+                    <h2 class="brand-font my-0">Sound Emporium</h2>
                 </a>
             </div>
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <form method="GET" action="{% url 'products' %}">
                     <div class="input-group w-100">
-                        <input class="form-control border border-black rounded-0" type="text" name="q"
+                        <input class="form-control search-bar border rounded-0" type="text" name="q"
                             placeholder="Search Sound Emporium">
                         <div class="input-group-append">
                             <button class="form-control btn rounded-0 search-icon" type="submit">
