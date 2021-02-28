@@ -73,69 +73,36 @@ There are a few features I feel that I would like to add in the future, or some 
 # Testing
 
 ## User Stories & Feature Testing
-* **Expected** - As a user of Dungeon Club, I would like to quickly navigate through the 5E Lookup menu to pull up the information I need for my game.
-    * **Testing** - Initially, the cascading drop-down had issues with regards to the growing complexity of the id's and data-targets required by the Bootstrap Collapse functionality. The submenus were all the same width and the menu drop-down headings were not coloured to differentiate. The menu system fast became unwieldy and was slightly fatiguing for a user.
-    * **Result** - User is able to navigate using the drop-down menu on desktop (left of screen) and mobile screen (top of screen) sizes and select the entry they wish to have displayed. The fix to clean up the UX of the menu was to use a highlighting colour for the menu category that the user has opened, and the sub-menus decreasing in width the further down through the menu structure the user goes.
-* **Expected** - As a user, I would like the process of making an account be simple and secure.
-    * **Testing** - Werkzeug Security provides safe hashing for password protection and therefore, when a new user clicks the register button and fills in the information, their account is created in the MongoDB users collection complete with secure password.
-    With regards to secure account deletion, the session functionality from Flask allows for easy removal of accounts using a function that checks the session.user is correct and they are allowed to continue with the account deletion:
-        ```
-        def delete_account():
-            if session.get('user'):
-                username = mongo.db.users.find_one(
-                    {"username": session["user"]})["username"]
 
-                return render_template("delete_account.html", username=username)
+- [Here](https://github.com/mattingliscoding/code-institute-milestone-project-four/blob/master/README_assets/MS4%20User%20Stories%20-%20Host%20Stories.pdf) is a look at my User Stories document from the start of the Sound Emporium project:
 
-            return redirect(url_for("login"))
-        ```
-        When the user confirms their deletion request on the subsequent page, the following code (session.pop()) ensures that the user is removed from the browser cache. This further protects the user's information. 
-        ```
-        @app.route("/account/delete-confirm", methods=["GET", "POST"])
-        def delete_account_confirm():
-            mongo.db.users.remove({"username": session["user"]})
-            flash("User Deleted")
-            session.pop("user")
-            return redirect(url_for("register"))
-        ```
-* **Expected** - As a user, I would like to have a place to store characters I've made for various games I've been a part of. I would also like to be able to keep a to-do list/log of current missions and quests I have undertaken during my games.
-    * **Testing/Bug 1** - I experienced a visual bug whereby a user would expand their character card in order to use the EDIT function. The nature of the Bootstrap Collapse functionality and my usage of it meant that all the character cards at once would extend down the page rather than just the one in use. 
-    * **Result** - In order to rectify this, improve UX and also to create a much more familiar process for web form submission, I implemented Bootstrap Modal pop-ups instead for the editing of both Character and Quest items. This is a great improvement to this feature. You can see the results in this image: 
-    ![Modal popup example](https://i.imgur.com/U7AGxnz.png)
-    * **Testing/Bug 2** - Another issue with the Character feature was the inclusion of the HTML tables in the card deck to display stats. The table was extending out of the bounds of the card and pushing whitespace out to the right hand side of the screen, which of course looked terrible and needed a suitable fix. 
-    * **Result** - To fix this, I needed to utilise the CSS property ```overflow-x:auto;``` and set it to a table container class for use across the site (I encountered a similar problem on the article text on the Lookup page which has many sets of stats in tables). This allowed the table to have its own horizontal scrollbar and the card deck kept a uniform dimensions across different screen resolutions. This can be seen in this screenshot:
-
-        ![Scrollable table example](https://i.imgur.com/0StKmYi.png)
-    * **Testing/Bug 3** - The most prominent issue found with the Character and Quest features was an oversight in my UX. Upon trying to edit their entry, the edit form did not contain their previously entered values. The edit form simply had blank inputs with placeholder text, similar to the Add Character form, except with a different route/function connected to the Submit button.
-    * **Result** - To rectify this glaring UX issue, I found that the answer was frustratingly obvious. For the forms on the page, Jinja for/if loops are used to loop through any characters or quests found in the database and then ascertain if they belong to the user stored in the session cache. If this is found to be true, then their items data is populated onto the cards. The editing and deleting of these items is then handled by using each Character or Quests specific unique ID that is generated and assigned to it by MongoDB. Using this in the Jinja language of the HTML allowed me to ensure that the correlating values were being edited and also to replace ```placeholder="{{ character.character_name }}"``` with ```value="{{ character.character_name }}"```.
+### Bugs Encountered/Fixed & Known Issues
+* **Expected** - As a user of Sound Emporium I would like to see a list of all products, to select which ones I would consider purchasing.
+    * **Testing** - Possibly the most prominent issue I had with the development of the project came when having to move the data from the local SQLite3 database to the Heroku PostgreSQL one for deployment. Since I did not use fixtures in production (I created each product in the Django Admin panel), I had to do a manual data dump from SQLite3 using 
     
-        Here is a sample of code for one of the edit form inputs that would demonstrates how the HTML is now written to display the stored values that are to be edited by the user:
         ```
-        <form method="POST" action="{{ url_for('edit_character', character_id=character._id) }}">
-            <div class="form-group">
-                <label class="fancy-font" for="character_name">Character Name</label>
-                <input name="character_name" type="text" class="form-control form-item"
-                    id="edit_character_name{{character._id}}" value="{{ character.character_name }}" required />
-        </form>
+        python3 manage.py dumpdata
         ```
-        In addition, here is a screenshot where you can see in the edit form modal the stored values that match the ones from the original card on the site behind it:
 
-        ![Edit functionality example](https://i.imgur.com/URuESLH.png)
+        Following this with a loaddata command caused errors linking to built-in Django models. Eventually, with the help of tutor support, we managed to get the data migrated by creating a separate .json file for the models that were causing the issues. 
+        One technique that especially helped with the trial and error process was putting Print statements in my settings file to ascertain which database was being accessed when the site was launched. 
+        ![Screenshot of comments](https://i.imgur.com/x9VzWry.png)
+
+    * **Result** - The user is able to access all the data that can be hosted by either local or deployment phase databases.
+* **Expected** - As a user, I would like to leave reviews on products for future prospective customers.
+    * **Bug Encountered/Testing** - I encountered a frustrating bug whereby the Bootstrap 'collapse' elements that I wanted to reveal the Review form were performing very inconsistently. However the more I tinkered the form's appearance became even more sporadic, even when the Bootstrap class was not used. The solution for me, given time constraints, became to get it to the best possible place where it would perform every time. This now involves a user pressing the add review button, and the form showing but appearing as if the user has tried to submit empty fields. However the form does work, and the product detail page is now updating with the newly-created reviews.
 
 
+## Code Validation
+All HTML/CSS files for the site were formatted using [this free online formatter](https://www.freeformatter.com/html-formatter.html), then validated via [W3C Markup Validation Service](https://validator.w3.org/). 
+
+This produced some unavoidable errors that occur as part of using templating language, however I did endeavour to clean up as many as possible.
 
 
-## Code Validation & Known Errors
-All HTML/CSS files for the site were formatted using [this free online formatter](https://www.freeformatter.com/html-formatter.html), then validated via [W3C Markup Validation Service](https://validator.w3.org/). The W3C check did spring some errors in the code but when checked through, they were all as a result of the bad functionality for validating Jinja Templating language, and any other errors were rectified.
-
-* RESUBMISSION NOTE JAN 2021 - I have since ran the rendered HTML code through the validators and not the template code, and have checked thoroughly that no errors remain as a result of the Jinja templating. 
-
-The app.py Python file was checked and verified as completely PEP8 compliant, using [this checker](http://pep8online.com/checkresult):
-![Python pep8 screenshot](https://i.imgur.com/wAYKNJsl.png)
 ## Browser Support and Functionality
-The site was tested and working in several browsers; Google Chrome, Mozilla Firefox, Apple Safari and Microsoft Edge.
+Manual testing of the site's pathing and responsive-ness has been done by myself across multiple screen sizes and browsers.
 
-All site links, internal and external have been manually checked and tested thoroughly and no errors were found as a result of bad pathing.
+The site was tested and working in several browsers; Google Chrome, Mozilla Firefox, Apple Safari and Microsoft Edge.
 
 ## Responsive Design Testing
 The site was extensively tested on a range of devices and screen-sizes, and was regularly tested during development, using Google Chrome DevTools. The range of responsive design can be seen in the prototype image at the top of this document but I will also include some screenshots from DevTools here from testing:
@@ -147,7 +114,7 @@ The site was extensively tested on a range of devices and screen-sizes, and was 
 ![Login on Phone display](https://i.imgur.com/329ksSTl.png)
 
 ## Debugging
-Extensive debugging was done throughout development of the site, mainly using Chrome DevTools to fix UI issues, and Werkzeug to debug issues with the Python/Flask code and routing.
+Extensive debugging was done throughout development of the site, mainly using Chrome DevTools to fix UI issues, and GitPod CLI to debug issues with the Python/Django code.
 
 # Deployment and Cloning
 
@@ -167,34 +134,156 @@ web: python app.py
 * The environment variables for the project are entered on the app settings. These include the MONGO_URI, and SECRET_KEY.
 * Navigate to the 'Deploy' section, and from that menu, link the existing GitHub repo master branch to the Heroku app and enable automatic deployment.
 
-## Cloning this project
-In order to clone this repository, to work on the code yourself, please follow these steps:
-* On the GitHub main page of the repository, above the file-list click on the 'Code' button, with the download symbol.
-* In the HTTPS tab, click the clipboard symbol to copy the clone URL.
-* On your system, open your terminal.
-* Change the current working directory to the location where you want the cloned directory.
-* Type git clone, and then paste the URL you copied earlier.
+# Deployment
+## Heroku Deployment with AWS
+This website is deployed on [Heroku](https://www.heroku.com/), following these steps:
+1. Install these packages to your local environment, since these packages are required to deploy a Django project on Heroku.
+- [gnicorn](https://gunicorn.org/): `gnicorn` is Python WSGI(web server gataway interface) server for UNIX.
+- [gninx](https://www.nginx.com/): `gninx` is a free, open-source, high-performance HTTP server and reverse proxy, as well as an IMAP/POP3 proxy server.
+- [psycopg2-binary](https://pypi.org/project/psycopg2-binary/): `psycopg2-binary` is PostgreSQL database adapter for the Python programming language.
+- [dj-database-url](https://pypi.org/project/dj-database-url/): `dj-database-url` allows you to utilize the 12factor inspired DATABASE_URL environment variable to configure your Django application.
+2. Create a `requirements.txt` file and freeze all the modules with the command `pip3 freeze > requirements.txt` in the terminal.
+3. Create a `Procfile` write `web: gunicorn boutique_ado.wsgi:application` in the file.
+4. `git add` and `git commit` and `git push` all the changes to the Github repositoty of this project.
+5. Go to Heroku and create a **new app**. Set a name for this app and select the closest region (Europe) and click **Create app**.
+6. Go to **Resources** tab in Heroku, then in the **Add-ons** search bar look for **Heorku Postgres**(you can type postgres), select **Hobby Dev — Free** and click **Submit Order Form** button to add it to your project.
+7. In the heroku dashboard for the application, click on **Setting** > **Reveal Config Vars** and set the values as follows:
+
+| Key | Value |
+| ----------- | ----------- |
+| AWS_ACCESS_KEY_ID | `Your AWS Access Key` |
+| AWS_SECRET_ACCESS_KEY | `Your AWS Secret Access Key` |
+| DATABASE_URL | `Your Postgres Database URL` |
+| EMAIL_HOST_PASS | `Your Email Password (generated by Gmail)` |
+| EMAIL_HOST_USER | `Your Email Address` |
+| SECRET_KEY | `Your Secret Key` |
+| STRIPE_PUBLIC_KEY | `Your Stripe Public Key` |
+| STRIPE_SECRET_KEY | `Your Stripe Secret Key` | 
+| STRIPE_WH_SECRET | `Your Stripe WH Key` |
+| USE_AWS | `True` |
+
+* I used [Djecrety](https://djecrety.ir/) to generate Django Secret Key.
+
+8. Comment out the current database setting in settings.py, and add the code below instead. This is done temporarily to migrate the datbase on Heroku.
 ```
-$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+  DATABASES = {     
+        'default': dj_database_url.parse("<your Postrgres database URL here>")     
+    }
 ```
-* Press Enter to create your local clone.
+9. Migrate the database models to the Postgres database using the following commands in the terminal:
+`python3 manage.py migrate`
+10. Load the data fixtures(color_table, flower_table, image_table, product_table) into the Postgres database using the following command:
+`python3 manage.py loaddata <fixture_name>`
+11. Create a superuser for the Postgres database by running the following command:
+`python3 manage.py createsuperuser`
+12. Replace the database setting with the code below, so that the right database is used depending on development/deployed environment.
 ```
-$ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
-> Cloning into `Spoon-Knife`...
-> remote: Counting objects: 10, done.
-> remote: Compressing objects: 100% (8/8), done.
-> remove: Total 10 (delta 1), reused 10 (delta 1)
-> Unpacking objects: 100% (10/10), done.
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 ```
-* Install required modules using the requirements.txt using: 
+13. Disable collect static, so that Heroku won't try to collect static file with: `heroku config:set DISABLE_COLLECTSTATIC=1`
+14. Add `'flowerydays.herokuapp.com', 'localhost', '127.0.0.1'` to `ALLOWED_HOSTS` in settings.py.
 ```
-pip install -r requirements.txt
+ALLOWED_HOSTS = ['flowerydays.herokuapp.com', 'localhost', '127.0.0.1']
 ```
-* Create a .env file and add the following variables to it, PORT, IP, MONGODB_URI, SECRET_KEY and give them their needed values.
-* Run your app with 
+15. In Stripe, add Heroku app URL a new webhook endpoint.
+16. Update the settings.py with the new Stripe environment variables and email settings.
+17. Commit all the changes to Heroku. Medial files are not connected to the app yet but the app should be working on Heroku.
+
+### Amazon Web Service S3
+The static files and media files for this deployed site (e.g. image files for product/blog) are hosted in the [AWS](https://aws.amazon.com/) S3 Bucket. You will need to create S3 bucket, complete the setting up and upload static files and media files to the S3 bucket. You can find [Amazon S3 documentation](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) for more information on the setting.
+I used CORS configuration below:
 ```
-python3 app.py
+[
+  {
+      "AllowedHeaders": [
+          "Authorization"
+      ],
+      "AllowedMethods": [
+          "GET"
+      ],
+      "AllowedOrigins": [
+          "*"
+      ],
+      "ExposeHeaders": []
+  }
+]
 ```
+
+- Setting for static/media files in settings.py
+1. Install `boto3` and `django-storages` with a command `pip3 install boto3` and `pip3 install django-storages` in your terminal, to connect AWS S3 bucket to Django.
+2. Add 'storages' to `INSTALLED_APPS` in settings.py.
+3. Add the following in settings.py.
+```
+if 'USE_AWS' in os.environ:
+    # Cache Control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+
+    # Bucket Config
+    AWS_STORAGE_BUCKET_NAME = 'flowerydays'
+    AWS_S3_REGION_NAME = 'eu-west-1'
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3-eu-west-1.amazonaws.com'
+
+    # Static and media files
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+
+    # Override static and media URLs in production
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+```
+5. Add [custom_storages.py](https://github.com/AsunaMasuda/FloweryDays/blob/master/custom_storages.py).
+6. Delete DISABLE_COLLECTSTATIC from Heroku Config Var.
+7. Push all the changes to Github/Heroku and all the static files will be uploaded to S3 bucket.
+By setting up above, Heroku will run python3 manage.py collectstatic during the build process and look for static and media files.
+
+### Automatic Deploy on Heroku
+You can enable automatic deploy in the following steps that pushes update to Heroku everytime you push to github.
+1. Go to Deploy in Heroku dashboard.
+2. At `Automatic deploys`, choose a github repository you want to deploy.
+3. Click `Enable Automatic Deploys`.
+
+
+## Local Deployment
+For local deployment, you need to have an IDE (I used Gitpod for this project) and you need to install the following:
+- Git, Python3, PIP3
+Also, you need to create account in the following services if you don't own yet:
+- Stripe, AWS (S3 bucket), Gmail
+
+1. In the IDE you are using, copy and paste the following commane into the terminal to clone this repository.
+    `git clone https://github.com/AsunaMasuda/FloweryDays.git`
+(the other ways to clone a repository are written in this [GitHub documentation](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository))
+2. Set up environment variable in your selected IDE, or you can create `.env` file in your root directory and add `.env` to `.gitignore` file, and add the followings to the `.env` file.
+```
+import os  
+os.environ["DEVELOPMENT"] = "True"    
+os.environ["SECRET_KEY"] = "<Your Secret Key>"
+os.environ["STRIPE_PUBLIC_KEY"] = "<Your Stripe Public Key>"    
+os.environ["STRIPE_SECRET_KEY"] = "<Your Stripe Secret Key>"    
+os.environ["STRIPE_WH_SECRET"] = "<Your Stripe WH Secret Key>"    
+```
+3. Install all the required packages with `pip3 install -r requirements.txt`
+4. Migrate the models to crete a database using in your IDE with `python3 manage.py makemigrations` and `python3 manage.py migrate`
+5. Load the data fixtures(color_table, flower_table, image_table, product_table) into the database using the following command:
+`python3 manage.py loaddata <fixture_name>`
+6. Create a superuser for the Postgres database by running with `python3 manage.py createsuperuser`
+7. Now you can access the app using the command `python3 manage.py runserver`
 
 # Credits
 ## Content, Media and Credits

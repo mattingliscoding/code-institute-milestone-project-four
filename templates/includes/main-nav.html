@@ -22,7 +22,7 @@
             <a class="logo-font font-weight-bold nav-link nav-text mr-5" href="#" id="guitar-products" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Guitars
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
+            <div class="dropdown-menu border-0" aria-labelledby="#guitar-products">
                 <a href="{% url 'products' %}?category=electric_guitar" class="dropdown-item">Electric Guitars</a>
                 <a href="{% url 'products' %}?category=acoustic_guitar" class="dropdown-item">Acoustic Guitars</a>
                 <a href="{% url 'products' %}?category=bass_guitar" class="dropdown-item">Bass Guitars</a>
@@ -35,7 +35,7 @@
             <a class="logo-font font-weight-bold nav-link nav-text mr-5" href="#" id="drum-products" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Drums
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="homeware-link">
+            <div class="dropdown-menu border-0" aria-labelledby="#drum-products">
                 <a href="{% url 'products' %}?category=full_kits" class="dropdown-item">Full Kits</a>
                 <a href="{% url 'products' %}?category=individual_drums" class="dropdown-item">Individual Drums</a>
                 <a href="{% url 'products' %}?category=drum_equipment" class="dropdown-item">Drum Equipment</a>
@@ -47,7 +47,7 @@
             <a class="logo-font font-weight-bold nav-link nav-text mr-5" href="#" id="studio-products" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Studio
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="homeware-link">
+            <div class="dropdown-menu border-0" aria-labelledby="#studio-products">
                 <a href="{% url 'products' %}?category=monitors" class="dropdown-item">Monitors</a>
                 <a href="{% url 'products' %}?category=hardware" class="dropdown-item">Hardware</a>
                 <a href="{% url 'products' %}?category=software" class="dropdown-item">Software</a>
@@ -67,7 +67,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="logo-font font-weight-bold nav-link nav-text mr-5" href="{% url 'blog' %}" id="homeware-link">
+            <a class="logo-font font-weight-bold nav-link nav-text mr-5" href="{% url 'blog' %}">
                 Blog
             </a>                
         </li>
