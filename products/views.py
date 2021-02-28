@@ -182,3 +182,11 @@ def add_review(request, product_id):
 
     return render(request, 'products/product_detail.html', {
         'product': product, 'form': form})
+
+
+def delete_review(request, review_id):
+
+    review = get_object_or_404(Review, pk=review_id)
+    review.delete()
+    messages.success(request, 'Review deleted!')
+    return redirect(reverse('products'))
