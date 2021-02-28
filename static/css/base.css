@@ -32,6 +32,12 @@ body {
     color: black;
 }
 
+.btn-main:focus,
+.btn-main:hover{
+    background: #3F5259;
+    color: white;
+}
+
 /* font classes */
 
 .lato {
@@ -65,6 +71,11 @@ body {
     text-transform: uppercase;
     white-space: nowrap;
     text-shadow: 2px 2px 4px #000000;
+}
+
+.brand-font:focus,
+.brand-font:hover{
+    color: #3F5259;
 }
 
 .main-logo-link {
