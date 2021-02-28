@@ -15,17 +15,9 @@ def blog_feed(request):
     blog_image = BlogImage.objects.all()
     total_post_number = blog_post.count()
 
-    category_dict = dict()
-    for key in blog_post:
-        if key.category in category_dict.keys():
-            category_dict[key.category] += 1
-        else:
-            category_dict[key.category] = 1
-
     context = {
         'blog_post': blog_post,
         'blog_image': blog_image,
-        'category_dict': category_dict,
         'total_post_number': total_post_number,
     }
 

@@ -321,8 +321,17 @@ input[name='q']::placeholder {
     border-radius: 0;
 }
 
+/* BLOG */
 
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
 
+.blog-card-images{
+    max-height: 300px;
+    width: auto;
+}
 
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {

@@ -3,12 +3,9 @@
 <div class="container section-top">
 	<div class="row">
 		<div class="col-12 text-center">
-			<ul class="breadcrumb breadcrumb-custom">
+			<ul class="breadcrumb">
 				<li class="breadcrumb-item">
-					<a href="{% url 'blog' %}">Blog Top</a>
-				</li>
-				<li class="breadcrumb-item">
-					<a href="{% url 'category_view' blog_post.category %}">{{ blog_post.category }}</a>
+					<a href="{% url 'blog' %}">Blogs</a>
 				</li>
 				<li class="breadcrumb-item active" aria-current="page">{{ blog_post.title }}</li>
 			</ul>
@@ -70,11 +67,6 @@
                                 {{ comment_form|crispy }}
                                 <button class="btn btn-colour-1" action="submit" aria-label="Blog Comment Submit Button">Submit Comment</button>
                             </form>
-                            <div class="mt-4">
-                                <a href="{% url 'category_view' blog_post.category|lower %}">
-                                    <i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Category
-                                </a>
-                            </div>
                         </div>
                     {% else %}
                         <div class="mt-4">
