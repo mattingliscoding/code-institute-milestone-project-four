@@ -105,13 +105,7 @@ Manual testing of the site's pathing and responsive-ness has been done by myself
 The site was tested and working in several browsers; Google Chrome, Mozilla Firefox, Apple Safari and Microsoft Edge.
 
 ## Responsive Design Testing
-The site was extensively tested on a range of devices and screen-sizes, and was regularly tested during development, using Google Chrome DevTools. The range of responsive design can be seen in the prototype image at the top of this document but I will also include some screenshots from DevTools here from testing:
-
-![Site on Phone display](https://i.imgur.com/9vjYgVDl.png)
-
-![Site on Tablet display](https://i.imgur.com/FUH9cY7l.png)
-
-![Login on Phone display](https://i.imgur.com/329ksSTl.png)
+The site was extensively tested on a range of devices and screen-sizes, and was regularly tested during development, using Google Chrome DevTools.
 
 ## Debugging
 Extensive debugging was done throughout development of the site, mainly using Chrome DevTools to fix UI issues, and GitPod CLI to debug issues with the Python/Django code.
