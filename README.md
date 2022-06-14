@@ -113,7 +113,7 @@ Extensive debugging was done throughout development of the site, mainly using Ch
 # Deployment and Cloning
 
 ## Deployment
-Dungeon Club is deployed on Heroku, using a free account. To set up my project for deployment on Heroku, I followed this process:
+This site is deployed on Heroku, using a free account. To set up my project for deployment on Heroku, I followed this process:
 * A new requirements.txt file is needed and can be generated using 
 ``` 
 pip freeze > requirements.txt
@@ -128,7 +128,6 @@ web: python app.py
 * The environment variables for the project are entered on the app settings. These include the MONGO_URI, and SECRET_KEY.
 * Navigate to the 'Deploy' section, and from that menu, link the existing GitHub repo master branch to the Heroku app and enable automatic deployment.
 
-# Deployment
 ## Heroku Deployment with AWS
 This website is deployed on [Heroku](https://www.heroku.com/), following these steps:
 1. Install the gunicorn, psycopg2 and dj_database_url packages to your local environment, as they are required to deploy a Django project on Heroku.
