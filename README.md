@@ -10,7 +10,7 @@
 
 The mission of Sound Emporium is to provide a clean, hassle-free ecommerce experience for shoppers looking to browse a selection of musical instruments and equipment, displayed in a neat and initutive manner. 
 
-In addition, the site has secure user account creation by way of Django AllAuth, allowing users to login to safely store their privat information, leave reviews of products, and comment on the site's blog feed.
+In addition, the site has secure user account creation by way of Django AllAuth, allowing users to login to safely store their private information, leave reviews of products, and comment on the site's blog feed.
 
 # UI/UX
 
